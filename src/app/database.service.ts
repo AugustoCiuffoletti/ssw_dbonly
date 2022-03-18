@@ -9,8 +9,8 @@ export class DatabaseService {
     'https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/kvaas-giwjg/service/kvaas/incoming_webhook';
 
   teatro = {
-    platea: [],
-    palchi: [],
+    platea: ['Hallo'],
+    palchi: ['World'],
   };
 
   constructor(private http: HttpClient) {
@@ -22,6 +22,9 @@ export class DatabaseService {
   }
 
   public postvalue(data: Object): Observable<Object> {
-    return this.http.post(this.URL, JSON.stringify(data));
+    return this.http.post(
+      this.URL + '/get?key=' + this.key,
+      JSON.stringify(data)
+    );
   }
 }

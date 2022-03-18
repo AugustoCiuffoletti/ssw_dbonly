@@ -14,7 +14,14 @@ export class AppComponent {
 
   constructor(private database: DatabaseService) {}
 
-  upLoad() {
+  upload() {
+    var obs: Observable<Object>;
+    obs = this.database.getvalue();
+    obs.subscribe({complete: (x) => console.log(x)});
+    //obs.subscribe({error: (err) => console.error('Observer got an error: ' + err)});
+  }
+
+  download() {
     var obs: Observable<Object>;
     obs = this.database.postvalue(this.teatro)
     obs.subscribe((x) => console.log(x));
