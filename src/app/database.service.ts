@@ -12,8 +12,8 @@ export class DatabaseService {
     this.key = '9cf84c28';
   }
 
-  public getvalue(): Observable<Object> {
-    return this.http.get<Object>(this.URL + '/get?key=' + this.key);
+  public getvalue(key): Observable<Object> {
+    return this.http.get<Object>(this.URL + '/get?key=' + key);
   }
 
   public postvalue(data: Object): Observable<Object> {

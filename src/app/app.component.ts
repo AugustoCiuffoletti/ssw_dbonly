@@ -10,11 +10,14 @@ import { Observable } from 'rxjs'; // per Observable
 })
 export class AppComponent {
   name: string = 'Angular ' + VERSION.major;
+  key: string;
   teatro = {
     platea: ['Hallo'],
     palchi: ['World'],
   };
-  constructor(private database: DatabaseService) {}
+  constructor(private database: DatabaseService) {
+    this.key = '9cf84c28';
+  }
 
   upload() {
     var obs = this.database.postvalue(this.teatro);
@@ -25,7 +28,7 @@ export class AppComponent {
   }
 
   download() {
-    var obs=this.database.getvalue();
+    var obs=this.database.getvalue(this.key);
     obs.subscribe({
       next: (v) => console.log(v),
       error: (err) => console.error('Observer got an error: ' + err)
