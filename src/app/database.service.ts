@@ -12,14 +12,13 @@ export class DatabaseService {
     this.key = '9cf84c28';
   }
 
-  public getvalue(key): Observable<Object> {
+  public getvalue(key: string): Observable<Object> {
     return this.http.get<Object>(this.URL + '/get?key=' + key);
   }
 
-  public postvalue(data: Object): Observable<Object> {
+  public postvalue(data: Object, key: string): Observable<Object> {
     return this.http.post(
-      this.URL + '/get?key=' + this.key,
-      JSON.stringify(data)
+      this.URL + '/post?key=' + key + '&msg=' + JSON.stringify(data), null
     );
   }
 }

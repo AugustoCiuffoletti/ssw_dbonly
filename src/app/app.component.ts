@@ -15,12 +15,13 @@ export class AppComponent {
     platea: ['Hallo'],
     palchi: ['World'],
   };
+
   constructor(private database: DatabaseService) {
     this.key = '9cf84c28';
   }
 
   upload() {
-    var obs = this.database.postvalue(this.teatro);
+    var obs = this.database.postvalue(this.teatro, this.key);
     obs.subscribe({
       next: (x) => console.log(x),
       error: (err) => console.error('Observer got an error: ' + err.message)
