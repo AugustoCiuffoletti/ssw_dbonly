@@ -8,11 +8,6 @@ export class DatabaseService {
   URL: string =
     'https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/kvaas-giwjg/service/kvaas/incoming_webhook';
 
-  teatro = {
-    platea: ['Hallo'],
-    palchi: ['World'],
-  };
-
   constructor(private http: HttpClient) {
     this.key = '9cf84c28';
   }

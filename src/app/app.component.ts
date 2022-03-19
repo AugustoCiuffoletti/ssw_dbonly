@@ -1,7 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import { DatabaseService } from './database.service';
 
-import { Observable } from "rxjs"; // per Observable
+import { Observable } from 'rxjs'; // per Observable
 
 @Component({
   selector: 'my-app',
@@ -10,21 +10,25 @@ import { Observable } from "rxjs"; // per Observable
 })
 export class AppComponent {
   name: string = 'Angular ' + VERSION.major;
-  teatro: Object = {};
-
+  teatro = {
+    platea: ['Hallo'],
+    palchi: ['World'],
+  };
   constructor(private database: DatabaseService) {}
 
   upload() {
-    var obs: Observable<Object>;
-    obs = this.database.getvalue();
-    obs.subscribe({complete: (x) => console.log(x)});
-    //obs.subscribe({error: (err) => console.error('Observer got an error: ' + err)});
+    var obs = this.database.postvalue(this.teatro);
+    obs.subscribe({
+      next: (x) => console.log(x),
+      error: (err) => console.error('Observer got an error: ' + err.message)
+    });
   }
 
   download() {
-    var obs: Observable<Object>;
-    obs = this.database.postvalue(this.teatro)
-    obs.subscribe((x) => console.log(x));
-    obs.subscribe({error: (err) => console.error('Observer got an error: ' + err)});
+    var obs=this.database.getvalue();
+    obs.subscribe({
+      next: (v) => console.log(v),
+      error: (err) => console.error('Observer got an error: ' + err)
+    });
   }
 }
