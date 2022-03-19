@@ -11,13 +11,25 @@ import { Observable } from 'rxjs'; // per Observable
 export class AppComponent {
   name: string = 'Angular ' + VERSION.major;
   key: string;
+
   teatro = {
-    platea: ['Hallo'],
-    palchi: ['World'],
+    platea: [],
+    palchi: [],
   };
+  nfilePlatea = 7;
+  npostiPlatea = 10;
+  nfilePalchi = 4;
+  npostiPalchi = 6;
+
+  constructor() {
+    this.key = '9cf84c28';
+    this.teatro.platea=Array(this.nfilePlatea).fill(undefined).map( () => Array(this.npostiPlatea).fill("x"));
+    this.teatro.palchi=Array(this.nfilePalchi).fill(undefined).map( () => Array(this.npostiPalchi).fill("x"));
+    this.teatro.platea[2][1] = 'Alessio';
+    this.teatro.platea[3][4] = 'Gianna';
+    this.teatro.palchi[3][1] = 'Luigi';
 
   constructor(private database: DatabaseService) {
-    this.key = '9cf84c28';
   }
 
   upload() {
