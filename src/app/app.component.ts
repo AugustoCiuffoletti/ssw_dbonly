@@ -1,8 +1,6 @@
 import { Component, VERSION } from '@angular/core';
 import { DatabaseService } from './database.service';
 
-import { Observable } from 'rxjs'; // per Observable
-
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -28,12 +26,13 @@ export class AppComponent {
     this.teatro.platea[2][1] = 'Alessio';
     this.teatro.platea[3][4] = 'Gianna';
     this.teatro.palchi[3][1] = 'Luigi';
+  }
 
   upload() {
     var obs = this.database.postvalue(this.teatro, this.key);
     obs.subscribe({
       next: (x: string) => console.log(x),
-      error: (err: Object) => console.error('Observer got an error: ' + err.message)
+      error: (err: Error) => console.error('Observer got an error: ' + err.message)
     });
   }
 
@@ -41,7 +40,7 @@ export class AppComponent {
     var obs=this.database.getvalue(this.key);
     obs.subscribe({
       next: (v: string) => console.log(v),
-      error: (err: Object) => console.error('Observer got an error: ' + err)
+      error: (err: Error) => console.error('Observer got an error: ' + err)
     });
   }
 }
