@@ -6,7 +6,7 @@ import { Observable } from 'rxjs'; // per Observable
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   name: string = 'Angular ' + VERSION.major;
@@ -14,14 +14,14 @@ export class AppComponent {
 
   teatro = {
     platea: [],
-    palchi: [],
+    palchi: []
   };
   nfilePlatea = 7;
   npostiPlatea = 10;
   nfilePalchi = 4;
   npostiPalchi = 6;
 
-  constructor() {
+  constructor(private database: DatabaseService) {
     this.key = '9cf84c28';
     this.teatro.platea=Array(this.nfilePlatea).fill(undefined).map( () => Array(this.npostiPlatea).fill("x"));
     this.teatro.palchi=Array(this.nfilePalchi).fill(undefined).map( () => Array(this.npostiPalchi).fill("x"));
@@ -29,22 +29,19 @@ export class AppComponent {
     this.teatro.platea[3][4] = 'Gianna';
     this.teatro.palchi[3][1] = 'Luigi';
 
-  constructor(private database: DatabaseService) {
-  }
-
   upload() {
     var obs = this.database.postvalue(this.teatro, this.key);
     obs.subscribe({
-      next: (x) => console.log(x),
-      error: (err) => console.error('Observer got an error: ' + err.message)
+      next: (x: string) => console.log(x),
+      error: (err: Object) => console.error('Observer got an error: ' + err.message)
     });
   }
 
   download() {
     var obs=this.database.getvalue(this.key);
     obs.subscribe({
-      next: (v) => console.log(v),
-      error: (err) => console.error('Observer got an error: ' + err)
+      next: (v: string) => console.log(v),
+      error: (err: Object) => console.error('Observer got an error: ' + err)
     });
   }
 }
