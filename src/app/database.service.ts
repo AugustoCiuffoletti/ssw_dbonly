@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; // per Injectable
 import { Observable } from 'rxjs'; // per Observable
 import { HttpClient } from '@angular/common/http'; // per HttpClient
 
@@ -18,7 +18,8 @@ export class DatabaseService {
 
   public postvalue(data: Object, key: string): Observable<Object> {
     return this.http.post(
-      this.URL + '/post?key=' + key + '&msg=' + JSON.stringify(data), null
+      this.URL + '/post?key=' + key + '&msg=' + JSON.stringify(data),
+      null
     );
   }
 }
